@@ -1,11 +1,11 @@
 # 準備
 ## サーバのインストール
 
-「http://www.python.jp/」からダウンロードしインストール
+「 http://www.python.jp/ 」からダウンロードしインストール
 
 ## AngularJSのインストール
 
-「https://angularjs.org/」からダウンロードしインストール
+「 https://angularjs.org/ 」からダウンロードしインストール
 
 プロジェクトディレクトリ
 |-index.html
