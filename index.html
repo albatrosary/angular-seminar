@@ -1,0 +1,16 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body ng-app> 
+    {{1+1}} <br>
+    <input type="text" ng-model="hoge"><br>
+    ワンタイムバインディング:{{::hoge}} <br>
+    通常のバインディング{{hoge}}<br>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
+</html>
