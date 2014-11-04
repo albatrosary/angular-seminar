@@ -1,11 +1,21 @@
 # 準備
 ## サーバのインストール
+### Python
 
-「 http://www.python.jp/ 」からダウンロードしインストール  
+「 http://www.python.jp/ 」からダウンロードしインストールします  
 
 コマンドラインで  
+
 $ python -m SimpleHTTPServer  
+
 とすると[localhost:8000]で簡易サーバが立ち上がります。  
+
+### Ruby
+Rubyは「 https://www.ruby-lang.org/ja/ 」からダウンロードしインストールします  
+  
+$ ruby -run -e httpd -- -p 8000 .  
+  
+とすると同じく[localhost:8000]で簡易サーバが立ち上がります。
 
 ## AngularJSのインストール
 
@@ -13,7 +23,9 @@ $ python -m SimpleHTTPServer
 
 インストール完了後下記ディレクトリのようにangular.jsファイルを配置します。  
 尚、bowerを利用するのであれば  
+
 $ bower install angular#1.3.1  
+  
 でモジュールをダウンロードできます。  
 
 プロジェクトディレクトリ  
