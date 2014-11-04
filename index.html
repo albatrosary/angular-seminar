@@ -8,7 +8,7 @@
   </head>
   <body ng-app> 
     {{1+1}} <br>
-    <input type="text" ng-model="hoge"><br>
+    <input type="text" ng-model="hoge" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'red': 0} }" ng-keyup="cancel($event)"><br>
     ワンタイムバインディング:{{::hoge}} <br>
     通常のバインディング{{hoge}}<br>
     <script src="bower_components/angular/angular.js"></script>
