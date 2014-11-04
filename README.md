@@ -17,13 +17,17 @@ $ ruby -run -e httpd -- -p 8000 .
   
 とすると同じく[localhost:8000]で簡易サーバが立ち上がります。
 
-### webide
+### Web IDE
 
 Web IDEは多くあり簡易サーバをクライアントにインストール必要がありません  
 
 http://plnkr.co/edit/  
 http://jsdo.it/  
 http://jsfiddle.net/  
+
+### Windows
+IISの機能を有効にすることでアプリケーションサーバを起動することができます。  
+設定については割愛します。  
 
 ## AngularJSのインストール
 
@@ -67,6 +71,7 @@ $ bower install angular#1.3.1
 ### ng-include
 ### ng-click
 ### ng-class
+### ng-form
 ## プログラムを書いてみる
 ### angular.module
 ### constant
