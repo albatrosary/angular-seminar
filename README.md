@@ -17,6 +17,14 @@ $ ruby -run -e httpd -- -p 8000 .
   
 とすると同じく[localhost:8000]で簡易サーバが立ち上がります。
 
+### webide
+
+Web IDEは多くあり簡易サーバをクライアントにインストール必要がありません  
+
+http://plnkr.co/edit/  
+http://jsdo.it/  
+http://jsfiddle.net/  
+
 ## AngularJSのインストール
 
 「 https://angularjs.org/ 」からダウンロードしインストール  
