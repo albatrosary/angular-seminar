@@ -504,7 +504,23 @@ JavaScript の部分は
     .controller('footerCtrl', FooterCtrl);
 })();
 ```
-それぞれ独立した処理になっていますので、確認してください。  
+それぞれ独立した処理になっていますので、確認してください。このコントローラーネストすることも可能です。具体的には  
+
+```
+    <div ng-include="'header.html'"></div>
+    <div ng-controller="ctrl">
+    <!-- 何かを記載 -->
+      <input type="button" value="クリックでメッセージ表示" ng-click="onClick()">
+      <span ng-bind="::message"></span>
+      <div ng-controller="footerCtrl">
+        <!-- 何かを記載 -->
+        <input type="button" value="クリックでメッセージ表示" ng-click="onClick()">
+        <span ng-bind="::message"></span>
+      </div>
+    </div>
+    <script src="bower_components/angular/angular.js" ></script>
+```
+
 
 ### factory
 
