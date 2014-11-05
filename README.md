@@ -236,8 +236,52 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.username.$error.maxlength"&gt;8文字以上入力されています&lt;/p&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;  
 
-### ng-repeat
-### ng-init
+入力系の画面を作成する場合は、こういった AngularJS の機能を使うことでJavaScriptを書かなくても多くの機能を実装することができます。ビルトインディレクティブの威力といったところです。次に一覧を作成し、さらにディレクティブの機能について触れていきます。
+
+### ng-init と ng-repeat
+
+ng-init は AngularJS で何か処理を行わせるための前処理を行う部分です。ここに一覧表示させるデータを定義し ng-repeat で定義したデータを表示します。  
+先ほどのform終了タグの下に追加します。
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-init="  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;demoData = [  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '山田', age: 24},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '田中', age: 28},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '佐藤', age: 18},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '井上', age: 32},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '高橋', age: 46}  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]  
+&nbsp;&nbsp;&nbsp;&nbsp;"&gt;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li ng-repeat="data in demoData"&gt;{{data.name}} - {{data.age}}&lt;/li&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;  
+
+一覧表示されました。ここからバインディングの威力が問われます。filter という機能を実装します。  
+
+&nbsp;&nbsp;ng-repeat="data in demoData"  
+
+の部分に手を加えます。
+
+&nbsp;&nbsp;ng-repeat="data in demoData | filter search" 
+
+次に ng-model として search と定義したテキストボックスを用意います。先ほどのサンプルは  
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="search"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-init="  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;demoData = [  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '山田', age: 24},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '田中', age: 28},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '佐藤', age: 18},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '井上', age: 32},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '高橋', age: 46}  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]  
+&nbsp;&nbsp;&nbsp;&nbsp;"&gt;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li ng-repeat="data in demoData"&gt;{{data.name}} - {{data.age}}&lt;/li&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;  
+
+簡易検索ができました。たったこれだけのことで今まででは高機能だったものを実装することができました。
+
 ### ng-include
 ### ng-click
 ### ng-class
