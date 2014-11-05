@@ -238,8 +238,6 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 
 ### ng-repeat
 ### ng-init
-### ng-invalid
-### ng-dirty
 ### ng-include
 ### ng-click
 ### ng-class
