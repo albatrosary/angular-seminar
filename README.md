@@ -61,24 +61,24 @@ index.html に AngularJSのモジュールを読み込ませます。scriptタ�
 
 &lt;!doctype html&gt;  
 &lt;html class="no-js"&gt;  
-  &lt;head&gt;  
-    &lt;meta charset="utf-8"&gt;  
-    &lt;title&gt;AngularJSの勉強&lt;/title&gt;  
-  &lt;/head&gt;  
-  &lt;body ng-app&gt;  
-    &lt;script src="bower_components/angular/angular.js"&gt;&lt;/script&gt;  
-  &lt;/body&gt;  
+&nbsp;&nbsp;&lt;head&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="utf-8"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;AngularJSの勉強&lt;/title&gt;  
+&nbsp;&nbsp;&lt;/head&gt;  
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js"&gt;&lt;/script&gt;  
+&nbsp;&nbsp;&lt;/body&gt;  
 &lt;/html&gt;  
 
 ## {{}}を使った簡単な計算
 
 AngularJS が正しく実行されているか確認します。{{}}という少し変わった書き方を使って確認します。  
 
-  &lt;body ng-app&gt;  
-    {{1+1}}  
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;{{1+1}}  
 
 と bodyタグの下に記載してください。表示された結果が  
- 2  
+&nbsp;&nbsp;&nbsp;&nbsp;2  
 となれば成功です。
 
 
@@ -90,16 +90,16 @@ AngularJS が注目を集めた機能、双方向バインディングについ�
 
 先ほど {{}} については説明しました。今度はテキストボックスで入力された値を {{}} に表示してみます：  
 
-  &lt;body ng-app&gt;  
-  &lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
-  {{hoge}}  
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;{{hoge}}  
 
 これでテキストボックスから {{}} へプログラムらしいプログラムは書かずにバインディングできました。参考までにテキストボックスを二つ作った場合はどうでしょう？行ってみます：  
 
-  &lt;body ng-app&gt;  
-  &lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
-  &lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
-  {{hoge}}  
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;{{hoge}}  
 
 どちらのテキストボックスに入力してもバインディングされているのが確認できると思います。   
 
@@ -107,14 +107,14 @@ AngularJS が注目を集めた機能、双方向バインディングについ�
 
 バインディングですが一回だけバインドさせるという機能があります。それがワンタイムバインディングと呼ばれるものです。
 書き方は簡単で、モデルで指定したプロパティの前に  
-::  
+&nbsp;&nbsp;::  
 を記載するだけです。
 
-  &lt;body ng-app&gt;  
-  &lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
-  &lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
-  {{hoge}}&lt;br&gt;  
-  ワンタイムバインディング:{{::hoge}}  
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;{{hoge}}&lt;br&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;ワンタイムバインディング:{{::hoge}}  
 
 ## ディレクティブ（ng-xxxを使ってみる）
 ### ng-show
