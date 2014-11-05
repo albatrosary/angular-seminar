@@ -6,62 +6,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
   </head>
-  <body ng-app="app">
-    <div ng-controller="ctrl">
-      <input type="button" value="Ctrlスコープ　ボタン" ng-click="onclick()">
-      <input type="text" ng-model="fuga">
-      <div ng-controller="headCtrl">
-        <input type="button" value="HeadCtrlスコープ　ボタン" ng-click="onclick()">
-        {{1+1}}
-      </div>
-      <div ng-controller="mainCtrl">
-        <input type="button" value="MainCtrlスコープ　ボタン" ng-click="onclick()">
-        <input type="text" ng-model="hoge">
-        <input type="text" ng-model="hoge">
-        <div ng-bind="::hoge">ほげ</div>
-        <hr>
-        {{hoge}}<br>
-        こっちはワンタイムバインディング:{{::hoge}}<br>
-        <p ng-show="hoge==='1'">ほげ</p>
-        <p ng-if="hoge==='1'">showとifは何が違う？</p>
-      </div>
-    </div>
+  <body ng-app>
+    <input ng-paste="paste=true" ng-init="paste=false" placeholder='paste here'>pasted: {{paste}}<br>
+    <input ng-copy="copied=true" ng-init="copied=false; copyvalue='copy me'" ng-model="copyvalue">copied: {{copied}}<br>
+    <input ng-cut="cut=true" ng-init="cut=false; cutvalue='cut me'" ng-model="cutvalue">cut: {{cut}}<br>
     <script src="bower_components/angular/angular.js"></script>
-    <script>
-(function (){
-  var HeadCtrl = function ($scope, $rootScope){
-    $scope.onclick = function () {
-      console.log('HeadCtrl.$scope.onclick');
-      console.log('$rootScope:', $rootScope);
-      console.log('$scope:', $scope);
-      console.log('$scope.hoge:', $scope.hoge);
-      console.log('$scope.fuga:', $scope.fuga);
-      console.log('$scope.$parent.hoge', $scope.$parent.hoge);
-    };
-  };
-  var MainCtrl = function ($scope){
-    $scope.onclick = function () {
-      console.log('MainCtrl.$scope.onclick');
-      console.log('$scope.hoge:', $scope.hoge);
-      console.log('$scope.fuga:', $scope.fuga);
-      console.log('$scope.$parent.hoge', $scope.$parent.hoge);
-    };
-  };
-  var Ctrl = function ($scope){
-    $scope.onclick = function () {
-      console.log('Ctrl.$scope.onclick');
-      console.log('$scope.hoge:', $scope.hoge);
-      console.log('$scope.fuga:', $scope.fuga);
-      console.log('$scope.$parent.hoge', $scope.$parent.hoge);
-    };
-  };
-
-  angular.module('app', [])
-    .controller('headCtrl', HeadCtrl)
-    .controller('mainCtrl', MainCtrl)
-    .controller('ctrl', Ctrl);
-})();
-    </script>
   </body>
 </html>
 

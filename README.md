@@ -338,6 +338,18 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 ```
 inputタグに対してもAngularJSはいろいろなディレクティブを用意しています。
 
+### ng-copy と ng-paste 、ng-cut
+
+少し面白いディレクティブに ng-copy、ng-paste、ng-cutといったディレクティブがあります。
+```
+  <body ng-app>
+    <input ng-paste="paste=true" ng-init="paste=false" placeholder='paste here'>pasted: {{paste}}<br>
+    <input ng-copy="copied=true" ng-init="copied=false; copyvalue='copy me'" ng-model="copyvalue">copied: {{copied}}<br>
+    <input ng-cut="cut=true" ng-init="cut=false; cutvalue='cut me'" ng-model="cutvalue">cut: {{cut}}<br>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
+```
+
 ### ng-include
 
 今までの流れとは異なりますがここで便利機能 ng-include を使っていましょう。これを使うことでいろいろなページに共通のHTMLファイルを埋め込むことができます。例えばサイトのタイトルやメニューなどでこの機能を利用することが可能です。  
