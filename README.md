@@ -436,5 +436,37 @@ JavaScript の部分は
 
 それぞれ独立した処理になっていますので、確認してください。  
 
-### constant
-### value
+### factory
+
+factoryを使うことでより柔軟な機能実装ができると共に単体テストも行いやすくなります。既存のコンテンツで JavaScript を拡張しましょう  
+
+(function (){  
+&nbsp;&nbsp;// ここにJavaScriptを書きます    
+&nbsp;&nbsp;var Ctrl = function ($scope, factory){  
+&nbsp;&nbsp;&nbsp;&nbsp;// controllerの中身  
+&nbsp;&nbsp;&nbsp;&nbsp;$scope.onClick = function () {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = factory.showMassage("AngularJSアプリケーション");  
+&nbsp;&nbsp;&nbsp;&nbsp;};  
+&nbsp;&nbsp;};  
+&nbsp;&nbsp;var FooterCtrl = function ($scope, factory){  
+&nbsp;&nbsp;&nbsp;&nbsp;// controllerの中身  
+&nbsp;&nbsp;&nbsp;&nbsp;$scope.onClick = function () {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = factory.showMassage("ここはフッター");  
+&nbsp;&nbsp;&nbsp;&nbsp;};  
+&nbsp;&nbsp;};  
+&nbsp;&nbsp;var Factory = function () {  
+&nbsp;&nbsp;&nbsp;&nbsp;// 共通処理  
+&nbsp;&nbsp;&nbsp;&nbsp;var DEFUALT_MESSAGE = "AngularJS";  
+&nbsp;&nbsp;&nbsp;&nbsp;return {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;showMassage: function (message) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return  DEFUALT_MESSAGE + ':' + message;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;};  
+&nbsp;&nbsp;angular.module('app', [])  
+&nbsp;&nbsp;&nbsp;&nbsp;.controller('ctrl', Ctrl)  
+&nbsp;&nbsp;&nbsp;&nbsp;.controller('footerCtrl', FooterCtrl)  
+&nbsp;&nbsp;&nbsp;&nbsp;.factory('factory', Factory);  
+})();  
+
+これで AngularJS の基本的な部分については終了です。これにルーティングを追加すれば Single-page Application もわけなく実装できます。
