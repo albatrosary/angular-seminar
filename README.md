@@ -356,21 +356,23 @@ $scope というのがありますが、アプリケーションを作るとき�
 
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-controller="ctrl"&gt;  
+&lt;!-- 何かを記載 --&gt;  
   
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js" &gt;&lt;/script&gt;  
 
 画面上にメッセージを表示します。「AngularJSアプリケーション」と表示しましょう。まずJavaScriptのコントローラーに  
 
-&nbsp;&nbsp;var Ctrl = function ($scope){
-&nbsp;&nbsp;&nbsp;&nbsp;// controllerの中身
-&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = "AngularJSアプリケーション"
-&nbsp;&nbsp;};
+&nbsp;&nbsp;var Ctrl = function ($scope){  
+&nbsp;&nbsp;&nbsp;&nbsp;// controllerの中身  
+&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = "AngularJSアプリケーション"  
+&nbsp;&nbsp;};  
 
 と定義します。次にコンテンツであるHTMLのコントローラー部分に、呼び出す記載をします。実はこれについては既に学習済みです。
 
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-controller="ctrl"&gt;  
+&lt;!-- 何かを記載 --&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span ng-bind="message"&gt;&lt;/span&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js" &gt;&lt;/script&gt;  
