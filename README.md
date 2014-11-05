@@ -232,8 +232,8 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" name="username" ng-model="hoge" ng-minlength="4" ng-maxlength="8" required&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-show="hoge==='1'"&gt;&lt;span   ng-bind="hoge"&gt;&lt;/span&gt;が入力されました&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.username.$invalid && demo.username.$dirty"&gt;入力された値が不正です&lt;/p&gt;  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.demouid.$error.minlength"&gt;4文字以下です&lt;/p&gt;  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.demouid.$error.maxlength"&gt;8文字以上入力されています&lt;/p&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.username.$error.minlength"&gt;4文字以下です&lt;/p&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.username.$error.maxlength"&gt;8文字以上入力されています&lt;/p&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;  
 
 ### ng-repeat
