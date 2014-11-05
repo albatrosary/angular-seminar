@@ -306,6 +306,7 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
     <select ng-model="name" ng-options="data.name for data in demoData">
       <option value="">何か入力してください<option>
     </select>
+    <div>選択されたのは:{{name}}</div>
     <script src="bower_components/angular/angular.js"></script>
   </body>
 ```
@@ -333,7 +334,7 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
         <input type="radio" name="hoge" ng-model="name.selected" ng-value="data.name">{{data.name}}
       </li>
     </ul>
-    <div>{{name.selected}}</div>
+    <div>選択されたのは:{{name.selected}}</div>
     <script src="bower_components/angular/angular.js"></script>
   </body>
 ```
