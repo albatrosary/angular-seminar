@@ -24,6 +24,7 @@ Web IDEは多くあり簡易サーバをクライアントにインストール�
 http://plnkr.co/edit/  
 http://jsdo.it/  
 http://jsfiddle.net/  
+http://phi-jp.github.io/runstant/release/alpha/index.html  
 
 ### Windows
 IISの機能を有効にすることでアプリケーションサーバを起動することができます。  
