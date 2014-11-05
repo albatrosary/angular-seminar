@@ -54,7 +54,7 @@ AngularJSのサイトから落とした場合は index.html と同じ階層に�
 |-angular.js  
 ```
 
-# 練習
+# はじめよう！
 ## index.htmlにAngularJSを読み込ませる  
 
 index.html に AngularJSのモジュールを読み込ませます。scriptタグの src にダウンロードした angular.js を配置するだけです。
