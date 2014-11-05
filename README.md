@@ -377,7 +377,7 @@ $scope というのがありますが、アプリケーションを作るとき�
     <div ng-include="'header.html'"></div>
     <div ng-controller="ctrl">
     <!-- 何かを記載 -->
-      <span ng-bind="message"></span>
+      <span ng-bind="::message"></span>
     </div>
     <script src="bower_components/angular/angular.js" ></script>
 ```
@@ -388,7 +388,7 @@ $scope というのがありますが、アプリケーションを作るとき�
     <div ng-controller="ctrl">
     <!-- 何かを記載 -->
       <input type="button" value="クリックでメッセージ表示" ng-click="onClick()">
-      <span ng-bind="message"></span>
+      <span ng-bind="::message"></span>
     </div>
     <script src="bower_components/angular/angular.js" ></script>
 ```
@@ -407,12 +407,12 @@ $scope というのがありますが、アプリケーションを作るとき�
     <div ng-controller="ctrl">
     <!-- 何かを記載 -->
       <input type="button" value="クリックでメッセージ表示" ng-click="onClick()">
-      <span ng-bind="message"></span>
+      <span ng-bind="::message"></span>
     </div>
     <div ng-controller="footerCtrl">
     <!-- 何かを記載 -->
       <input type="button" value="クリックでメッセージ表示" ng-click="onClick()">
-      <span ng-bind="message"></span>
+      <span ng-bind="::message"></span>
     </div>
     <script src="bower_components/angular/angular.js" ></script>
 ```
