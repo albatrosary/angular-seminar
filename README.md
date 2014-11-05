@@ -266,7 +266,7 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 
 次に ng-model として search と定義したテキストボックスを用意います。先ほどのサンプルは  
 
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="search"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="search"&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-init="  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;demoData = [  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name: '山田', age: 24},  
