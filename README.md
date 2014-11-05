@@ -297,7 +297,7 @@ header.html の中身は
 
 としましょう。これを ng-include で取り込みます。bodyタグの下に
 
-&nbsp;&nbsp;&lt;body ng-app&gt;
+&nbsp;&nbsp;&lt;body ng-app&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;
 
 と記載してください。うまくタイトルが表示されます。
