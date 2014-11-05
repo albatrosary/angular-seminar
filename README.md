@@ -392,9 +392,9 @@ $scope というのがありますが、アプリケーションを作るとき�
 
 &nbsp;&nbsp;var Ctrl = function ($scope){  
 &nbsp;&nbsp;&nbsp;&nbsp;// controllerの中身  
-&nbsp;&nbsp;&nbsp;&nbsp;$scope.onClick = function () {
+&nbsp;&nbsp;&nbsp;&nbsp;$scope.onClick = function () {  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = "AngularJSアプリケーション";  
-&nbsp;&nbsp;&nbsp;&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;};  
 &nbsp;&nbsp;};  
 
 かなり本格できなアプリケーションになってきたと思います。
