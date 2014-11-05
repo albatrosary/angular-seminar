@@ -303,7 +303,79 @@ header.html の中身は
 と記載してください。うまくタイトルが表示されます。
 
 ## プログラムを書いてみる
+
+せっかくですので JavaScript を少しだけ記述してみます。JavaScriptを記載する場所を定義します。
+
+&lt;!doctype html&gt;  
+&lt;html class="no-js"&gt;  
+&nbsp;&nbsp;&lt;head&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="utf-8"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;勉強&lt;/title&gt;  
+&nbsp;&nbsp;&lt;/head&gt;  
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js" &gt;&lt;/script&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&gt;  
+(function (){  
+// ここにJavaScriptを書きます  
+  
+})();  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;    
+&nbsp;&nbsp;&lt;/body&gt;    
+&lt;/html&gt;  
+
 ### angular.module
+
+はじめましょう！  
+まず、ng-appを ng-app="app" とAngularJSアプリケーションに名前をつけます。これで再度実行してみてください。エラーになるはずです。ここで angular.module をJavascript に定義します。
+
+(function (){  
+// ここにJavaScriptを書きます  
+&nbsp;&nbsp;angular.module('app', []);
+})();  
+
+これで再度実行してみてください。ちゃんと見出しが表示できていると思います。これで準備ができました。今は宣言だけをしましたので、実際のプログラムを書く場所を定義します。
+
+### controller
+
+コントローラーを配置することでいろいろな処理を記載することができます。
+
+(function (){  
+&nbsp;&nbsp;// ここにJavaScriptを書きます  
+&nbsp;&nbsp;var Ctrl = function ($scope){  
+&nbsp;&nbsp;&nbsp;&nbsp;// controllerの中身  
+&nbsp;&nbsp;};  
+  
+&nbsp;&nbsp;angular.module('app', [])  
+&nbsp;&nbsp;&nbsp;&nbsp;.controller('ctrl', Ctrl);  
+})(); 
+
+$scope というのがありますが、アプリケーションを作るときには威力を発揮します。
+
+このコントローラが扱うコンテンツの部分をHTMLに定義します。
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-controller="ctrl"&gt;  
+  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js" &gt;&lt;/script&gt;  
+
+画面上にメッセージを表示します。「AngularJSアプリケーション」と表示しましょう。まずJavaScriptのコントローラーに  
+
+&nbsp;&nbsp;var Ctrl = function ($scope){
+&nbsp;&nbsp;&nbsp;&nbsp;// controllerの中身
+&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = "AngularJSアプリケーション"
+&nbsp;&nbsp;};
+
+と定義します。次にコンテンツであるHTMLのコントローラー部分に、呼び出す記載をします。実はこれについては既に学習済みです。
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-controller="ctrl"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span ng-bind="message"&gt;&lt;/span&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js" &gt;&lt;/script&gt;  
+
+いかがでしょう！
+
 ### constant
 ### value
-### controller
