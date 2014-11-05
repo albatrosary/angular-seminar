@@ -283,9 +283,25 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 簡易検索ができました。たったこれだけのことで今まででは高機能だったものを実装することができました。
 
 ### ng-include
-### ng-click
-### ng-class
-### ng-form
+
+今までの流れとは異なりますがここで便利機能 ng-include を使っていましょう。これを使うことでいろいろなページに共通のHTMLファイルを埋め込むことができます。例えばサイトのタイトルやメニューなどでこの機能を利用することが可能です。  
+はじめに header.html というファイルを index.html と同じディレクトリに作成してください。  
+
+プロジェクトディレクトリ  
+|-index.html  
+|-header.html  
+
+header.html の中身は  
+
+&lt;h1&gt;AngularJS勉強会&lt;/h1&gt;  
+
+としましょう。これを ng-include で取り込みます。bodyタグの下に
+
+&nbsp;&nbsp;&lt;body ng-app&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;
+
+と記載してください。うまくタイトルが表示されます。
+
 ## プログラムを書いてみる
 ### angular.module
 ### constant
