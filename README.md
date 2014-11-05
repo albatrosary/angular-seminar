@@ -39,12 +39,6 @@ IISの機能を有効にすることでアプリケーションサーバを起�
 $ bower install angular#1.3.1  
 ```
 でモジュールをダウンロードできます。  
-```
-プロジェクトディレクトリ  
-|-index.html  
-|-angular.js  
-```
-もしくは  
 ```  
 プロジェクトディレクトリ  
 |-index.html  
@@ -52,6 +46,12 @@ $ bower install angular#1.3.1
 　|- angular  
 　　|- angular.js  
 ```  
+AngularJSのサイトから落とした場合は index.html と同じ階層に配置してください。
+```
+プロジェクトディレクトリ  
+|-index.html  
+|-angular.js  
+```
 
 # 練習
 ## index.htmlにAngularJSを読み込ませる  
