@@ -356,7 +356,7 @@ $scope というのがありますが、アプリケーションを作るとき�
 
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-controller="ctrl"&gt;  
-&lt;!-- 何かを記載 --&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- 何かを記載 --&gt;  
   
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js" &gt;&lt;/script&gt;  
@@ -365,19 +365,39 @@ $scope というのがありますが、アプリケーションを作るとき�
 
 &nbsp;&nbsp;var Ctrl = function ($scope){  
 &nbsp;&nbsp;&nbsp;&nbsp;// controllerの中身  
-&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = "AngularJSアプリケーション"  
+&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = "AngularJSアプリケーション";  
 &nbsp;&nbsp;};  
 
 と定義します。次にコンテンツであるHTMLのコントローラー部分に、呼び出す記載をします。実はこれについては既に学習済みです。
 
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-controller="ctrl"&gt;  
-&lt;!-- 何かを記載 --&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- 何かを記載 --&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span ng-bind="message"&gt;&lt;/span&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js" &gt;&lt;/script&gt;  
 
-いかがでしょう！
+いかがでしょう！  
+さらにボタンを使って何か処理をさせましょう。クリックしてメッセージを表示する機能を追加します。まずボタンから  
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-controller="ctrl"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- 何かを記載 --&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="button" ng-click="onClick()"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span ng-bind="message"&gt;&lt;/span&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js" &gt;&lt;/script&gt;  
+
+コントローラーは  
+
+&nbsp;&nbsp;var Ctrl = function ($scope){  
+&nbsp;&nbsp;&nbsp;&nbsp;// controllerの中身  
+&nbsp;&nbsp;&nbsp;&nbsp;$scope.onClick = function () {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = "AngularJSアプリケーション";  
+&nbsp;&nbsp;&nbsp;&nbsp;};
+&nbsp;&nbsp;};  
+
+かなり本格できなアプリケーションになってきたと思います。
 
 ### constant
 ### value
