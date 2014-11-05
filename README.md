@@ -349,6 +349,8 @@ inputタグに対してもAngularJSはいろいろなディレクティブを用
     <script src="bower_components/angular/angular.js"></script>
   </body>
 ```
+こうしたキー操作（ng-keydown、ng-keypress、ng-keyupなど）やマウス操作（ng-mousedown、ng-mousemove、ng-mouseoverなど）様々なディレクティブが用意されています。
+
 
 ### ng-include
 
