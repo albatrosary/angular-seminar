@@ -293,7 +293,6 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 
 ```
   <body ng-app>
-    <input type="text" ng-model="search">
     <div ng-init="
       demoData = [
         {name: '山田', age: 24},
@@ -317,7 +316,6 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 
 ```
   <body ng-app>
-    <input type="text" ng-model="search">
     <div ng-init="name.selected=''"></div>
     <div ng-init="
       demoData = [
