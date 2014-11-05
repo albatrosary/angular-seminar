@@ -277,7 +277,7 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]  
 &nbsp;&nbsp;&nbsp;&nbsp;"&gt;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li ng-repeat="data in demoData"&gt;{{data.name}} - {{data.age}}&lt;/li&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li ng-repeat="data in demoData | filter search"&gt;{{data.name}} - {{data.age}}&lt;/li&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;  
 
 簡易検索ができました。たったこれだけのことで今まででは高機能だったものを実装することができました。
