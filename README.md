@@ -287,6 +287,58 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 ```
 簡易検索ができました。たったこれだけのことで今まででは高機能だったものを実装することができました。
 
+### ng-options
+
+配列が定義されてますので selectタグを使ってみます。selectタグで利用されるのが ng-options です
+
+```
+  <body ng-app>
+    <input type="text" ng-model="search">
+    <div ng-init="
+      demoData = [
+        {name: '山田', age: 24},
+        {name: '田中', age: 28},
+        {name: '佐藤', age: 18},
+        {name: '井上', age: 32},
+        {name: '高橋', age: 46}
+      ]
+    "></div>
+    <select ng-model="name" ng-options="data.name for data in demoData">
+      <option value="">何か入力してください<option>
+    </select>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
+```
+
+### ng-value
+
+次に radioボタンを作ってみます。その時に利用するのが ng-value です。
+
+```
+  <body ng-app>
+    <input type="text" ng-model="search">
+    <div ng-init="name.selected=''"></div>
+    <div ng-init="
+      demoData = [
+        {name: '山田', age: 24},
+        {name: '田中', age: 28},
+        {name: '佐藤', age: 18},
+        {name: '井上', age: 32},
+        {name: '高橋', age: 46}
+      ]
+    "></div>
+
+    <ul>
+      <li ng-repeat="data in demoData">
+        <input type="radio" name="hoge" ng-model="name.selected" ng-value="data.name">{{data.name}}
+      </li>
+    </ul>
+    <div>{{name.selected}}</div>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
+```
+inputタグに対してもAngularJSはいろいろなディレクティブを用意しています。
+
 ### ng-include
 
 今までの流れとは異なりますがここで便利機能 ng-include を使っていましょう。これを使うことでいろいろなページに共通のHTMLファイルを埋め込むことができます。例えばサイトのタイトルやメニューなどでこの機能を利用することが可能です。  
