@@ -117,6 +117,21 @@ AngularJS が注目を集めた機能、双方向バインディングについ�
 &nbsp;&nbsp;&nbsp;&nbsp;ワンタイムバインディング:{{::hoge}}  
 
 ## ディレクティブ（ng-xxxを使ってみる）
+### ng-model
+
+ng-model については詳しい説明なしに利用しましたし、AngularJS を使うために ng-app も既に触りました。ここまでで実は2つもディレクティブについて学んだということになります。余談ですが AngularJS 既に用意しているディレクティブのことをビルトインディレクティブと呼びます。ディレクティブは開発者自身が作ることができ開発したディレクティブはカスタムディレクティブと呼んでいます。  
+話を元に戻して ng-model ですが inputタグや selectタグ、 textareaタグなどの要素にたいして「モデル」と呼ばれるデータを保持しておく領域を管理すると共にバインディングを提供します。このことは先ほどのサンプルで体験済みです！  
+
+### ng-bind
+
+バインディングで {{}} を利用しましたが、アプリケーションを作っているとバインディングに若干の時間が必要になる場合があります。そのときにかっこ悪いかもしれませんが {{}} がチラッと見えることがあります。それを回避させるために ng-bind を利用します。先ほどのサンプルの {{}} を置き換えてみます。
+
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-bind="::hoge"&gt;&lt;/p&gt;&lt;br&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;ワンタイムバインディング:&lt;p ng-bind="::hoge"&gt;&lt;/p&gt;  
+
 ### ng-show
 ### ng-if
 ### ng-repeat
@@ -125,7 +140,6 @@ AngularJS が注目を集めた機能、双方向バインディングについ�
 ### ng-maxlength
 ### ng-invalid
 ### ng-dirty
-### ng-bind
 ### ng-include
 ### ng-click
 ### ng-class
