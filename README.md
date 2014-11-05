@@ -173,10 +173,71 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-if="hoge==='1'"&gt;&lt;span ng-bind="hoge"&gt;&lt;/span&gt;が入力されました&lt;/div&gt;  
 
+### ng-invalid と ng-dirty
+
+テキストボックスに対してバリデーションチェックを行います。簡単に必須チェックを行いましょう。先ほどのサンプルはテキストボックスに required を入れることで必須項目となります。
+
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge" required &gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-if="hoge==='1'"&gt;&lt;span ng-bind="hoge"&gt;&lt;/span&gt;が入力されました&lt;/div&gt;  
+
+画面上、警告も何も表示されないので何が起きているのか確認できませんが、カスケードスタイルシートを定義するとよく理解できます。headタグの中に次の定義をしてください：  
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;AngularJSの勉強&lt;/title&gt;  
+&nbsp;&nbsp;&lt;style&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;input.ng-invalid {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-color: #ff0000;  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&lt;/style&gt;  
+&nbsp;&nbsp;&lt;/head&gt;  
+
+何も入力されていないときにはテキストボックスの縁が赤くなっていることが確認できます。ただ、これだと入力前から赤いので UI としてはイマイチといった感じです。ここで ng-dirty を利用します。カスケードスタイルシートを次のように変更してください：  
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;AngularJSの勉強&lt;/title&gt;  
+&nbsp;&nbsp;&lt;style&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;input.ng-invalid.ng-dirty {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-color: #ff0000;  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&lt;/style&gt;  
+&nbsp;&nbsp;&lt;/head&gt;  
+
+こうすることで入力前は警告なしで、入力後、空欄にした場合は赤くなることが確認できます。
+
+### $invalid と $dirty を利用する（ちょっと寄り道）
+
+入力されてなかった場合、赤くなりましたがメッセージも表示します。メッセージを表示するためには formタグ を用意し「名前」をつける必要があります。formタグ名前を「demo」としテキストボックスの名前を「username」とします。警告メッセージは「必須入力です」にしましょう。するとbodyタグの中身は次のようになります。
+
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;form name="demo"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" name="username" ng-model="hoge" required&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-show="hoge==='1'"&gt;&lt;span   ng-bind="hoge"&gt;&lt;/span&gt;が入力されました&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.username.$invalid && demo.username.$dirty"&gt;必須入力です&lt;/p&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;  
+
+### ng-minlength と ng-maxlength
+
+更に、入力された文字の長さを定義することができます。usernameの長さを4文字以上、8文字未満として定義します。
+
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;form name="demo"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" name="username" ng-model="hoge" ng-minlength="4" ng-maxlength="8" required&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-show="hoge==='1'"&gt;&lt;span   ng-bind="hoge"&gt;&lt;/span&gt;が入力されました&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.username.$invalid && demo.username.$dirty"&gt;必須入力です&lt;/p&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;  
+
+機能に合わせてメッセージも変更します。$errorを使うことでメッセージの幅が広がります。
+
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;form name="demo"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" name="username" ng-model="hoge" ng-minlength="4" ng-maxlength="8" required&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-show="hoge==='1'"&gt;&lt;span   ng-bind="hoge"&gt;&lt;/span&gt;が入力されました&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.username.$invalid && demo.username.$dirty"&gt;入力された値が不正です&lt;/p&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.demouid.$error.minlength"&gt;4文字以下です&lt;/p&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-show="demo.demouid.$error.maxlength"&gt;8文字以上入力されています&lt;/p&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;  
+
 ### ng-repeat
 ### ng-init
-### ng-minlength
-### ng-maxlength
 ### ng-invalid
 ### ng-dirty
 ### ng-include
