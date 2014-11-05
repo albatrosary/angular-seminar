@@ -57,7 +57,8 @@ $ bower install angular#1.3.1
 ## index.htmlにAngularJSを読み込ませる  
 
 index.html に AngularJSのモジュールを読み込ませます。scriptタグの src にダウンロードした angular.js を配置するだけです。
-次に bodyタグに ng-app を記載します。こうすると body タグで括られた範囲で angular が有効になります。
+次に bodyタグに ng-app を記載します。こうすると body タグで括られた範囲で angular が有効になります。  
+bower を使ってインストールした場合は:
 
 &lt;!doctype html&gt;  
 &lt;html class="no-js"&gt;  
@@ -67,6 +68,32 @@ index.html に AngularJSのモジュールを読み込ませます。scriptタ�
 &nbsp;&nbsp;&lt;/head&gt;  
 &nbsp;&nbsp;&lt;body ng-app&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js"&gt;&lt;/script&gt;  
+&nbsp;&nbsp;&lt;/body&gt;  
+&lt;/html&gt;  
+
+ダウンロードし配置した場合は：  
+
+&lt;!doctype html&gt;  
+&lt;html class="no-js"&gt;  
+&nbsp;&nbsp;&lt;head&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="utf-8"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;AngularJSの勉強&lt;/title&gt;  
+&nbsp;&nbsp;&lt;/head&gt;  
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="angular.js"&gt;&lt;/script&gt;  
+&nbsp;&nbsp;&lt;/body&gt;  
+&lt;/html&gt;  
+
+URLで指定している場合は：  
+
+&lt;!doctype html&gt;  
+&lt;html class="no-js"&gt;  
+&nbsp;&nbsp;&lt;head&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="utf-8"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;AngularJSの勉強&lt;/title&gt;  
+&nbsp;&nbsp;&lt;/head&gt;  
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.1/angular.js"&gt;&lt;/script&gt;  
 &nbsp;&nbsp;&lt;/body&gt;  
 &lt;/html&gt;  
 
