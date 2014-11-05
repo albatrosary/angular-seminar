@@ -128,12 +128,24 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 
 &nbsp;&nbsp;&lt;body ng-app&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;&lt;br&gt;  
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;p ng-bind="::hoge"&gt;&lt;/p&gt;&lt;br&gt;  
-&nbsp;&nbsp;&nbsp;&nbsp;ワンタイムバインディング:&lt;p ng-bind="::hoge"&gt;&lt;/p&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span ng-bind="hoge"&gt;&lt;/span&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;ワンタイムバインディング:&lt;span ng-bind="::hoge"&gt;&lt;/span&gt;  
 
-### ng-show
-### ng-if
+### ng-show と ng-if
+
+もう少しプログラムチックな動きをさせるために ng-show と ng-if を利用してみます。テキストボックスに入力した値が 1 のときにメッセージを出力するというロジックを記述してみます。  
+
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-show="hoge==='1'"&gt;&lt;span ng-bind="hoge"&gt;&lt;/span&gt;が入力されました&lt;/div&gt;  
+
+これは  ng-if でも書くことができます。  
+
+&nbsp;&nbsp;&lt;body ng-app&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" ng-model="hoge"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-if="hoge==='1'"&gt;&lt;span ng-bind="hoge"&gt;&lt;/span&gt;が入力されました&lt;/div&gt;  
+
 ### ng-repeat
 ### ng-init
 ### ng-minlength
