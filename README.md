@@ -267,7 +267,7 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 ```
 の部分に手を加えます。
 ```
-  ng-repeat="data in demoData | filter search"
+  ng-repeat="data in demoData | filter: search"
 ```
 次に ng-model として search と定義したテキストボックスを用意います。先ほどのサンプルは  
 ```
@@ -282,7 +282,7 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
       ]
     "></div>
     <ul>
-      <li ng-repeat="data in demoData | filter search">{{data.name}} - {{data.age}}</li>
+      <li ng-repeat="data in demoData | filter: search">{{data.name}} - {{data.age}}</li>
     </ul>
 ```
 簡易検索ができました。たったこれだけのことで今まででは高機能だったものを実装することができました。
