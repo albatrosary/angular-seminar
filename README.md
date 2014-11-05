@@ -397,7 +397,44 @@ $scope というのがありますが、アプリケーションを作るとき�
 &nbsp;&nbsp;&nbsp;&nbsp;};  
 &nbsp;&nbsp;};  
 
-かなり本格できなアプリケーションになってきたと思います。プログラムを書き始めると $scope が目立ってきます。AngularJSはこの $scope で厳密なスコープ定義をしているとても重要なファクターです。
+かなり本格できなアプリケーションになってきたと思います。プログラムを書き始めると $scope が目立ってきます。AngularJSはこの $scope で厳密なスコープ定義をしているとても重要なファクターです。実際にフッターというコントローラーを追加してみます。コンテンツ部分は
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-controller="ctrl"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- 何かを記載 --&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="button" value="クリックでメッセージ表示" ng-click="onClick()"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span ng-bind="message"&gt;&lt;/span&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-controller="footerCtrl"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- 何かを記載 --&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="button" value="クリックでメッセージ表示" ng-click="onClick()"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span ng-bind="message"&gt;&lt;/span&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js" &gt;&lt;/script&gt;  
+
+JavaScript の部分は  
+
+(function (){  
+&nbsp;&nbsp;// ここにJavaScriptを書きます    
+&nbsp;&nbsp;var Ctrl = function ($scope){  
+&nbsp;&nbsp;// controllerの中身  
+&nbsp;&nbsp;&nbsp;&nbsp;$scope.onClick = function () {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = "AngularJSアプリケーション";  
+&nbsp;&nbsp;&nbsp;&nbsp;};  
+&nbsp;&nbsp;};  
+&nbsp;&nbsp;var FooterCtrl = function ($scope){  
+&nbsp;&nbsp;&nbsp;&nbsp;// controllerの中身  
+&nbsp;&nbsp;&nbsp;&nbsp;$scope.onClick = function () {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$scope.message = "ここはフッター";  
+&nbsp;&nbsp;&nbsp;&nbsp;};  
+&nbsp;&nbsp;};  
+  
+&nbsp;&nbsp;angular.module('app', [])  
+&nbsp;&nbsp;&nbsp;&nbsp;.controller('ctrl', Ctrl)  
+&nbsp;&nbsp;&nbsp;&nbsp;.controller('footerCtrl', FooterCtrl);  
+})();  
+
+それぞれ独立した処理になっていますので、確認してください。  
 
 ### constant
 ### value
