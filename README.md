@@ -93,7 +93,7 @@ URLで指定している場合は：
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;AngularJSの勉強&lt;/title&gt;  
 &nbsp;&nbsp;&lt;/head&gt;  
 &nbsp;&nbsp;&lt;body ng-app&gt;  
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.1/angular.js"&gt;&lt;/script&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.1/angular.js" &gt;&lt;/script&gt;  
 &nbsp;&nbsp;&lt;/body&gt;  
 &lt;/html&gt;  
 
