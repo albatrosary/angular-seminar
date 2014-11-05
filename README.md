@@ -383,7 +383,7 @@ $scope というのがありますが、アプリケーションを作るとき�
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-include="'header.html'"&gt;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-controller="ctrl"&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- 何かを記載 --&gt;  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="button" ng-click="onClick()"&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="button" value="クリックでメッセージ表示" ng-click="onClick()"&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span ng-bind="message"&gt;&lt;/span&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;  
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;script src="bower_components/angular/angular.js" &gt;&lt;/script&gt;  
@@ -397,7 +397,7 @@ $scope というのがありますが、アプリケーションを作るとき�
 &nbsp;&nbsp;&nbsp;&nbsp;};  
 &nbsp;&nbsp;};  
 
-かなり本格できなアプリケーションになってきたと思います。
+かなり本格できなアプリケーションになってきたと思います。プログラムを書き始めると $scope が目立ってきます。AngularJSはこの $scope で厳密なスコープ定義をしているとても重要なファクターです。
 
 ### constant
 ### value
