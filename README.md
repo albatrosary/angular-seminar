@@ -104,6 +104,8 @@ AngularJS が正しく実行されているか確認します。{{}}という少
 ```html
   <body ng-app>
     {{1+1}}
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ```
 と bodyタグの下に記載してください。表示された結果が  
 ```
@@ -123,6 +125,8 @@ AngularJS が注目を集めた機能、双方向バインディングについ�
   <body ng-app>
     <input type="text" ng-model="hoge"><br>
     {{hoge}}
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ```
 これでテキストボックスから {{}} へプログラムらしいプログラムは書かずにバインディングできました。参考までにテキストボックスを二つ作った場合はどうでしょう？行ってみます：  
 ```html
@@ -130,6 +134,8 @@ AngularJS が注目を集めた機能、双方向バインディングについ�
     <input type="text" ng-model="hoge"><br>
     <input type="text" ng-model="hoge"><br>
     {{hoge}}
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ```
 どちらのテキストボックスに入力してもバインディングされているのが確認できると思います。   
 
@@ -147,6 +153,8 @@ AngularJS が注目を集めた機能、双方向バインディングについ�
     <input type="text" ng-model="hoge"><br>
     {{hoge}}<br>
     ワンタイムバインディング:{{::hoge}}
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ```
 ## ディレクティブ（ng-xxxを使ってみる）
 ### ng-model
@@ -163,6 +171,8 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
     <input type="text" ng-model="hoge">
     <span ng-bind="hoge"></span>
     ワンタイムバインディング:<span ng-bind="::hoge"></span>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ```
 ### ng-show と ng-if
 
@@ -171,12 +181,16 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
   <body ng-app>
     <input type="text" ng-model="hoge">
     <div ng-show="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ```  
 これは  ng-if でも書くことができます。  
 ```html
   <body ng-app>
     <input type="text" ng-model="hoge">
     <div ng-if="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ``` 
 ### ng-invalid と ng-dirty
 
@@ -185,10 +199,16 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
   <body ng-app>
     <input type="text" ng-model="hoge" required >
     <div ng-if="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ```
 画面上、警告も何も表示されないので何が起きているのか確認できませんが、カスケードスタイルシートを定義するとよく理解できます。headタグの中に次の定義をしてください：  
 ```html
+  <head>
+    <meta charset="utf-8">
     <title>AngularJSの勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
     <style>
       input.ng-invalid {
         border-color: #ff0000;
@@ -198,7 +218,11 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 ```
 何も入力されていないときにはテキストボックスの縁が赤くなっていることが確認できます。ただ、これだと入力前から赤いので UI としてはイマイチといった感じです。ここで ng-dirty を利用します。カスケードスタイルシートを次のように変更してください：  
 ```html
+  <head>
+    <meta charset="utf-8">
     <title>AngularJSの勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
     <style>
       input.ng-invalid.ng-dirty {
         border-color: #ff0000;
@@ -218,6 +242,8 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
       <div ng-show="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
       <p ng-show="demo.username.$invalid && demo.username.$dirty">必須入力です</p>
     </form>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ```
 ### ng-minlength と ng-maxlength
 
@@ -229,6 +255,8 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
       <div ng-show="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
       <p ng-show="demo.username.$invalid && demo.username.$dirty">必須入力です</p>
     </form>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ```
 機能に合わせてメッセージも変更します。$errorを使うことでメッセージの幅が広がります。
 ```html
@@ -240,6 +268,8 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
       <p ng-show="demo.username.$error.minlength">4文字以下です</p>
       <p ng-show="demo.username.$error.maxlength">8文字以上入力されています</p>
     </form>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
 ```
 入力系の画面を作成する場合は、こういった AngularJS の機能を使うことでJavaScriptを書かなくても多くの機能を実装することができます。ビルトインディレクティブの威力といったところです。次に一覧を作成し、さらにディレクティブの機能について触れていきます。
 
