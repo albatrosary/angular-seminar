@@ -204,7 +204,6 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 ```html
   <body ng-app>
     <input type="text" ng-model="hoge" required >
-    <div ng-if="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
     <script src="bower_components/angular/angular.js"></script>
   </body>
 ```
@@ -245,7 +244,6 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
   <body ng-app>
     <form name="demo">
       <input type="text" name="username" ng-model="hoge" required>
-      <div ng-show="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
       <p ng-show="demo.username.$invalid && demo.username.$dirty">必須入力です</p>
     </form>
     <script src="bower_components/angular/angular.js"></script>
@@ -258,7 +256,6 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
   <body ng-app>
     <form name="demo">
       <input type="text" name="username" ng-model="hoge" ng-minlength="4" ng-maxlength="8" required>
-      <div ng-show="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
       <p ng-show="demo.username.$invalid && demo.username.$dirty">必須入力です</p>
     </form>
     <script src="bower_components/angular/angular.js"></script>
@@ -269,7 +266,6 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
   <body ng-app>
     <form name="demo">
       <input type="text" name="username" ng-model="hoge" ng-minlength="4" ng-maxlength="8" required>
-      <div ng-show="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
       <p ng-show="demo.username.$invalid && demo.username.$dirty">入力された値が不正です</p>
       <p ng-show="demo.username.$error.minlength">4文字以下です</p>
       <p ng-show="demo.username.$error.maxlength">8文字以上入力されています</p>
