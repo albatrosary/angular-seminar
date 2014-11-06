@@ -66,6 +66,8 @@ bower を使ってインストールした場合は:
   <head>
     <meta charset="utf-8">
     <title>AngularJSの勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
   </head>
   <body ng-app>
     <script src="bower_components/angular/angular.js"></script>
@@ -79,6 +81,8 @@ bower を使ってインストールした場合は:
   <head>
     <meta charset="utf-8">
     <title>AngularJSの勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
   </head>
   <body ng-app>
     <script src="angular.js"></script>
@@ -92,6 +96,8 @@ URLで指定している場合は：
   <head>
     <meta charset="utf-8">
     <title>AngularJSの勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
   </head>
   <body ng-app>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.1/angular.js" ></script>
