@@ -2,15 +2,21 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>今日の勉強</title>
+    <title>AngularJSの勉強</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
   </head>
-  <body ng-app>
-    <input ng-paste="paste=true" ng-init="paste=false" placeholder='paste here'>pasted: {{paste}}<br>
-    <input ng-copy="copied=true" ng-init="copied=false; copyvalue='copy me'" ng-model="copyvalue">copied: {{copied}}<br>
-    <input ng-cut="cut=true" ng-init="cut=false; cutvalue='cut me'" ng-model="cutvalue">cut: {{cut}}<br>
+  <body ng-app="app">
+    <div ng-include="'header.html'"></div>
+    <div ui-view=""></div>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- アプリケーションファイル -->
+    <script src="app/app.js"></script>
+    <script src="app/factory/factory.js"></script>
+    <script src="app/controller/main/mainCtrl.js"></script>
+    <script src="app/controller/main/main.js"></script>
+    <script src="app/controller/footer/footerCtrl.js"></script>
+    <script src="app/controller/footer/footer.js"></script>
   </body>
 </html>
-
