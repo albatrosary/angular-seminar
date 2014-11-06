@@ -653,6 +653,9 @@ factoryを使うことでより柔軟な機能実装ができると共に単体�
    |- factory
        |- factory.js
 ```
+
+#### index.html
+
 index.html は分割した JavaScriptファイルをすべて読み込ませる必要がありますので定義します。
 ```html
 <!doctype html>
@@ -684,7 +687,11 @@ index.html は分割した JavaScriptファイルをすべて読み込ませる�
   </body>
 </html>
 ```
+
+#### app.js
+
 app.jsファイルはメインとなる JavaScriptファイルですが内容は（いまは）ほとんど記載することがありません。
+
 ```
 'use strict';
 
@@ -694,9 +701,13 @@ angular.module('app', []);
 
 [https://developer.mozilla.org/ja/docs/Web/JavaScript/Strict_mode:title]
 
+
+#### factory.js
+
 さて次に factory.js を見ていきます。
 ```
 'use strict';
+
 (function (){
 var Factory = function () {
     // 共通処理
@@ -736,7 +747,10 @@ angular.module('app', [])
 ```
 angular.module('app')
 ```
-です。定義と呼び出しの違いを思い出してください。
+です。前回学んだ「定義」と「モジュール呼び出し」の違いを思い出してください。
+
+#### mainCtrl.js
+
 さて mainCtrl.js は
 ```
 'use strict';
@@ -749,6 +763,9 @@ angular.module('app')
     };
   });
 ```
+
+#### footerCtrl.js
+
 footerCtrl.js は
 ```
 'use strict';
@@ -761,7 +778,12 @@ angular.module('app')
     };
   });
 ```
-です。コントローラーではそれぞれ factory という引数がありますが、これがファクトリー定義したfactory を呼び出しているという意味です。これを「インジェクション」と呼びます。いままでと同じように無事アプリケーションが動くはずです（余談ですが main と footer と名前付けしたのはちょっとセンスが疑われますね）。
+です。コントローラーではそれぞれ factory という引数がありますが、これがファクトリー定義したfactory を呼び出しているという意味です。これを「インジェクション」と呼びます。
+
+### ここまでの成果
+
+単純にファイル分割したという内容はこれで終了です。いままでと同じように無事アプリケーションが動くはずです（余談ですが main と footer と名前付けしたのはちょっとセンスが疑われますね）。
+
 
 ## ルーティングを使ってみる
 
@@ -832,7 +854,11 @@ bower install angular-ui-router
   </body>
 </html>
 ```
-ここままだと angular-ui-router.js ファイルを読み込んだだけでアプリケーションとしてはまだ利用できません。 angular で利用するためには宣言する必要があります。 app.js を開き「宣言」をします。
+ここままだと angular-ui-router.js ファイルを読み込んだだけでアプリケーションとしてはまだ利用できません。
+
+### ui-router の利用宣言
+
+angular で利用するためには宣言する必要があります。 app.js を開き「宣言」をします。
 
 ```
 'use strict';
@@ -841,9 +867,12 @@ angular.module('app', ['ui.router']);
 ```
 重要な一文です。[]の中に'ui.router'と記載しました。ここでようやく[]の意味が理解できたのではないかと思います。
 
-### 指定された url ごとに「機能」を入れ替える処理を定義する
+### 指定された url ごとに「機能」を入れ替える処理を定義
 
 表示させたい内容を定義したHTMLファイルを作成します。
+
+#### main.html
+
 mainCtrl に対する main.html は
 ```html
 <div ng-controller="mainCtrl">
@@ -852,6 +881,9 @@ mainCtrl に対する main.html は
   <span ng-bind="::message"></span>
 </div>
 ```
+
+#### footer.html
+
 footerCtrl に対する footer.html は
 ```html
 <div ng-controller="footerCtrl">
@@ -860,7 +892,45 @@ footerCtrl に対する footer.html は
   <span ng-bind="::message"></span>
 </div>
 ```
-道具は揃いましたがひとつ足りないものがあります。ある url が指定されたときに、どのモジュールが実行されるかまだ定義していません。定義ファイルとして、 mainCtrl用には main.js、footerCtrl用には footer.js を用意します（またJavaScriptファイルが増えましたね...）。main.js は
+
+#### index.html
+
+main.html と footer.html を外だしにしましたので index.html は
+```html
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJSの勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body ng-app="app">
+    <div ng-include="'header.html'"></div>
+    <script src="angular.js"></script>
+    <script src="angular-ui-router.js"></script>
+    <!-- アプリケーションファイル -->
+    <script src="app/app.js"></script>
+    <script src="app/factory/factory.js"></script>
+    <script src="app/controller/main/mainCtrl.js"></script>
+    <script src="app/controller/footer/footerCtrl.js"></script>
+  </body>
+</html>
+```
+となっているはずです。如何でしょうか？道具は揃いました。
+
+### ここまでの成果
+
+JavaScriptファイルについては、app.js、factory.js、mainCtrl.js、footerCtrl.jsとファイル分割しました。HTMLについては、index.htmlとmain.html、footer.htmlにファイル分割しました。ここまでの作業は意味のある単位でファイルを作成するという目的で行ってきましたが如何でしょうか？ちょっと整理できるまで時間が必要になるかもしれません。でも、残念ながらファイル分割の作業の最後が次になります。
+
+### $stateProvider で状態を定義
+
+ひとつ足りないものがあります。ある url が指定されたときに、どのモジュールが実行されるかまだ定義していません。定義ファイルとして、 mainCtrl用には main.js、footerCtrl用には footer.js を用意します（またJavaScriptファイルが増えましたね...）。
+
+#### main.js
+
+main.js は
+
 ```
 'use strict';
 
@@ -876,10 +946,11 @@ angular.module('app')
 ```
 これは「状態」を main と定義しています。状態「main」は次の特徴があります。 
 
-* url を /
+* 呼び出す url を /
 * 表示する HTMLは main.html
 * 利用するコントローラーは mainCtrl
 
+#### footer.js
 
 footer.jsは
 ```
@@ -896,10 +967,15 @@ angular.module('app')
   });
 ```
 となります。こちらは
-* url を /footer
+
+* 呼び出す url を /footer
 * 表示する HTMLは footer.html
 * 利用するコントローラーは footerCtrl
+
 として定義しています。「$stateProvider」という単語が出てきましたが、このように$stateProviderは「状態」を定義しています。
+
+### ここまでの整理
+
 ディレクトリをもう一度整理しますので確認してください。
 ```
 プロジェクトフォルダー
@@ -943,7 +1019,10 @@ angular.module('app')
   </body>
 </html>
 ```
-外だしにしたHTMLを読み込ませる場所を定義する必要があります。
+
+### ui-view
+
+最後に、外だしにしたHTMLを読み込ませる場所を定義する必要があります。
 ```
     <div ui-view=""></div>
 ```
@@ -980,7 +1059,11 @@ http://localhost:8000/
 ```
 http://localhost:8000/#/footer
 ```
-のとき動きを確認してください。どうですか！
+のとき動きを確認してください。どうですか！  
+これでようやくルーターを使えるようになりました。なかなかボリュームがあったと思います。
+
+### $urlRouterProvider の利用
+
 ただこの場合だと適当な url が指定された場合、たとえば
 ```
 http://localhost:8000/#/hoge
@@ -1000,6 +1083,9 @@ angular.module('app', ['ui.router'])
   });
 ```
 $urlRouterProvider.otherwise('/')を指定することで、定義されてない url がきたら '/' （つまり main）に遷移させますという宣言をしています。
+
+### ui-sref（簡単なメニューを作る）
+
 せっかくルーティング作りましたのでメニュー風な要素をいれましょう。header.htmlを開き url を定義します。
 ```html
 <a ui-sref="state">タイトル</a>
