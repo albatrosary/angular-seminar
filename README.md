@@ -948,3 +948,36 @@ http://localhost:8000/
 http://localhost:8000/#/footer
 ```
 のとき動きを確認してください。どうですか！
+ただこの場合だと適当な url が指定された場合、ボタンが表示されないことを確認してください。適当な url が指定された場合には
+```
+http://localhost:8000/
+```
+と同じ main.html が表示されるようにします。app.js を開いてください。
+```
+'use strict';
+
+angular.module('app', ['ui.router'])
+  .config(function ($urlRouterProvider) {
+    $urlRouterProvider
+      .otherwise('/');
+  });
+```
+$urlRouterProvider.otherwise('/')を指定することで、定義されてない url がきたら '/' （つまり main）に遷移させますという宣言をしています。
+せっかくルーティング作りましたのでメニュー風な要素をいれましょう。header.htmlを開き url を定義します。
+```html
+<a ui-sref="state">タイトル</a>
+```
+を追加します。state部分は main.js、footer.jsで定義したときの .state 横に記載したものです。それに()を付け加えています。
+```
+angular.module('app')
+  .config(function ($stateProvider) {
+    $stateProvider
+      .state('main', {
+```
+header.html は次のようになります。
+```
+<h1>AngularJS勉強会</h1>
+<a ui-sref="main()">メイン</a>
+<a ui-sref="footer()">フッター</a>
+```
+ルーティングについてはもっといろいろ機能がありますが、ここまでとします。
