@@ -653,7 +653,7 @@ factoryを使うことでより柔軟な機能実装ができると共に単体�
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>今日の勉強</title>
+    <title>AngularJSの勉強</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
   </head>
@@ -764,14 +764,18 @@ bower install angular-ui-router
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>今日の勉強</title>
+    <title>AngularJSの勉強</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
   </head>
   <body ng-app="app">
     <div ng-include="'header.html'"></div>
+    <!-- 機能
+    〜 省略 〜  
+    -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- アプリケーションファイル -->
     <script src="app/app.js"></script>
     <script src="app/factory/factory.js"></script>
     <script src="app/controller/main/mainCtrl.js"></script>
@@ -785,14 +789,18 @@ bower install angular-ui-router
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>今日の勉強</title>
+    <title>AngularJSの勉強</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
   </head>
   <body ng-app="app">
     <div ng-include="'header.html'"></div>
+    <!-- 機能
+    〜 省略 〜  
+    -->
     <script src="angular.js"></script>
     <script src="angular-ui-router.js"></script>
+    <!-- アプリケーションファイル -->
     <script src="app/app.js"></script>
     <script src="app/factory/factory.js"></script>
     <script src="app/controller/main/mainCtrl.js"></script>
@@ -812,7 +820,7 @@ angular.module('app', ['ui.router']);
 ### 指定された url ごとに「機能」を入れ替えてみる
 
 はじめに表示させるHTMLファイルを個別に定義します。
-mainCtrlについては
+mainCtrlに対する main.html は
 ```html
 <div ng-controller="mainCtrl">
 <!-- 何かを記載 -->
@@ -820,7 +828,7 @@ mainCtrlについては
   <span ng-bind="::message"></span>
 </div>
 ```
-footerCtrlについては
+footerCtrl に対する footer.html は
 ```html
 <div ng-controller="footerCtrl">
   <!-- 何かを記載 -->
@@ -857,7 +865,9 @@ angular.module('app')
       });
   });
 ```
-となります。ディレクトリをもう一度整理します。
+となります。「$stateProvider」という単語が出てきました。$stateProviderは「状態」を定義しています。いまの場合だと
+main のときには urlとして/が指定され main.html を読み込み mainCtrl を実行するという意味です。
+ディレクトリをもう一度整理しますので確認してください。
 ```
 プロジェクトフォルダー
 |- index.html
@@ -876,13 +886,13 @@ angular.module('app')
    |- factory
        |- factory.js
 ```
-ファイルをかなり分割しましたので index.html で読み込ませる必要があります。
+多くのJavaScriptファイルを作成しましたので index.html でもきちんと読み込ませているか確認しましょう。
 ```html
 <!doctype html>
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>今日の勉強</title>
+    <title>AngularJSの勉強</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
   </head>
@@ -890,6 +900,7 @@ angular.module('app')
     <div ng-include="'header.html'"></div>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- アプリケーションファイル -->
     <script src="app/app.js"></script>
     <script src="app/factory/factory.js"></script>
     <script src="app/controller/main/mainCtrl.js"></script>
@@ -903,13 +914,13 @@ angular.module('app')
 ```
     <div ui-view=""></div>
 ```
-というディレクティブを使うとその場所に個別定義したHTMLが差し込まれます！
+というディレクティブを使うとその場所に個別定義した HTML(main.htmlやfooter.html) が差し込まれます！
 ```html
 <!doctype html>
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>今日の勉強</title>
+    <title>AngularJSの勉強</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
   </head>
@@ -918,6 +929,7 @@ angular.module('app')
     <div ui-view=""></div>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- アプリケーションファイル -->
     <script src="app/app.js"></script>
     <script src="app/factory/factory.js"></script>
     <script src="app/controller/main/mainCtrl.js"></script>
@@ -927,3 +939,12 @@ angular.module('app')
   </body>
 </html>
 ```
+手間暇掛けてここまでファイル分割とルーターの定義をしました。かなりの苦労だったのではないかと思います。実際に動かしてみましょう。
+```
+http://localhost:8000/
+```
+のとき
+```
+http://localhost:8000/#/footer
+```
+のとき動きを確認してください。どうですか！
