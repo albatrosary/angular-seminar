@@ -338,10 +338,10 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
         {name: '高橋', age: 46}
       ]
     "></div>
-    <select ng-model="name" ng-options="data.name for data in demoData">
+    <select ng-model="user" ng-options="data.name for data in demoData">
       <option value="">何か入力してください<option>
     </select>
-    <div>選択されたのは:{{name}}</div>
+    <div ng-show="user.name">選択されたのは:{{user.name}}さん{{user.age}}さい</div>
     <script src="bower_components/angular/angular.js"></script>
   </body>
 ```
