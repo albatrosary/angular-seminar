@@ -319,6 +319,25 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 ```
 簡易検索ができました。たったこれだけのことで今まででは高機能だったものを実装することができました。
 
+### filter をもう少し
+
+filter というキーワードが出てきましたのでもう少しフィルターについて見てみます。uppercase というフィルターを利用するとはじめに実装した表示を大文字にすることができます：
+```html
+  <body ng-app>
+    <input type="text" ng-model="hoge"><br>
+    {{hoge | uppercase}}
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
+```
+同じように ng-show で使ったサンプルでは
+```html
+  <body ng-app>
+    <input type="text" ng-model="hoge">
+    <div ng-show="(hoge | uppercase)==='A'"><span ng-bind="hoge"></span>が入力されました</div>
+    <script src="bower_components/angular/angular.js"></script>
+  </body>
+```
+
 ### ng-options
 
 配列が定義されてますので selectタグを使ってみます。selectタグで利用されるのが ng-options です
