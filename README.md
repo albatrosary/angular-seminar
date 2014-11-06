@@ -628,7 +628,13 @@ factoryを使うことでより柔軟な機能実装ができると共に単体�
 
 # さらにステップアップ
 
-続きましてもうちょっとかっこよくしていきたいと思います。かっこいいというかJavaScriptファイルが一つですので数人で開発するときにはちょっと困りますね。なので少し「かっこよく」です。
+続きましてもうちょっとかっこよくしていきたいと思います。かっこいいというかJavaScriptファイルが一つですので数人で開発するときにはちょっと困りますね。なので少し「かっこよく」です。前回はビルトインディレクティブと簡単なコントローラーとファクトリーまで行いました。
+
+[http://albatrosary.hateblo.jp/entry/2014/11/06/101400:embed]
+
+[http://albatrosary.hateblo.jp/entry/2014/11/06/101400:title]
+
+
 
 ## ファイルを分割する
 
@@ -647,7 +653,7 @@ factoryを使うことでより柔軟な機能実装ができると共に単体�
    |- factory
        |- factory.js
 ```
-そうするとindex.htmlは
+index.html は分割した JavaScriptファイルをすべて読み込ませる必要がありますので定義します。
 ```html
 <!doctype html>
 <html class="no-js">
@@ -678,7 +684,7 @@ factoryを使うことでより柔軟な機能実装ができると共に単体�
   </body>
 </html>
 ```
-app.jsファイルを覗いてみます
+app.jsファイルはメインとなる JavaScriptファイルですが内容は（いまは）ほとんど記載することがありません。
 ```
 'use strict';
 
@@ -688,7 +694,25 @@ angular.module('app', []);
 
 [https://developer.mozilla.org/ja/docs/Web/JavaScript/Strict_mode:title]
 
-さて次にfactory.jsです。
+さて次に factory.js を見ていきます。
+```
+'use strict';
+(function (){
+var Factory = function () {
+    // 共通処理
+    var DEFUALT_MESSAGE = "AngularJS:";
+    return {
+      showMassage: function (message) {
+        return DEFUALT_MESSAGE + message;
+      }
+    }
+  };
+  
+angular.module('app')
+  .factory('factory', Factory);	
+})();
+```
+ですが、次のように少し書き方を変えましょう。
 ```
 'use strict';
 
@@ -737,18 +761,18 @@ angular.module('app')
     };
   });
 ```
-です。コントローラーではそれぞれ factory という引数がありますが、これがファクトリー定義したfactory を呼び出しているという意味です。これを「インジェクション」と呼びます。
+です。コントローラーではそれぞれ factory という引数がありますが、これがファクトリー定義したfactory を呼び出しているという意味です。これを「インジェクション」と呼びます。いままでと同じように無事アプリケーションが動くはずです（余談ですが main と footer と名前付けしたのはちょっとセンスが疑われますね）。
 
 ## ルーティングを使ってみる
 
 ### ui-routeのインストール
 
-ルーティングを入れてみます。ルールとしては
+ルーティングルールを定義します。ルールとしては
 ```
-//localhost:8000/ のとき mainCtrl が index.html で処理
-//localhost:8000/#/footer のとき footerCtrl が index.html で処理 
+localhost:8000/ のとき mainCtrl を処理
+localhost:8000/#/footer のとき footerCtrl を処理 
 ```
-されるようにします。まずルーティングするために ui-route をインストールしましょう。
+まずルーティングするために ui-route をインストールしましょう。
 
 [http://angular-ui.github.io/ui-router/:embed]
 
@@ -808,19 +832,19 @@ bower install angular-ui-router
   </body>
 </html>
 ```
-ここまでだと angular-ui-router.js ファイルを読み込んだだけでアプリケーションとしてはまだ利用できません。 angular で利用するために宣言する必要があります。 app.js を開き「宣言」をします。
+ここままだと angular-ui-router.js ファイルを読み込んだだけでアプリケーションとしてはまだ利用できません。 angular で利用するためには宣言する必要があります。 app.js を開き「宣言」をします。
 
 ```
 'use strict';
 
 angular.module('app', ['ui.router']);
 ```
-重要な一文です。[]の中に'ui.router'と記載しました。
+重要な一文です。[]の中に'ui.router'と記載しました。ここでようやく[]の意味が理解できたのではないかと思います。
 
-### 指定された url ごとに「機能」を入れ替えてみる
+### 指定された url ごとに「機能」を入れ替える処理を定義する
 
-はじめに表示させるHTMLファイルを個別に定義します。
-mainCtrlに対する main.html は
+表示させたい内容を定義したHTMLファイルを作成します。
+mainCtrl に対する main.html は
 ```html
 <div ng-controller="mainCtrl">
 <!-- 何かを記載 -->
@@ -836,8 +860,7 @@ footerCtrl に対する footer.html は
   <span ng-bind="::message"></span>
 </div>
 ```
-道具は揃いましたがひとつ足りないものがあります。ある url が指定されたときにどのモジュールが実行されるか、まだ定義していません。定義ファイルとして、 mainCtrl用には main.js、footerCtrl用には footer.jsを用意します。
-main.jsは
+道具は揃いましたがひとつ足りないものがあります。ある url が指定されたときに、どのモジュールが実行されるかまだ定義していません。定義ファイルとして、 mainCtrl用には main.js、footerCtrl用には footer.js を用意します（またJavaScriptファイルが増えましたね...）。main.js は
 ```
 'use strict';
 
@@ -851,6 +874,13 @@ angular.module('app')
       });
   });
 ```
+これは「状態」を main と定義しています。状態「main」は次の特徴があります。 
+
+* url を /
+* 表示する HTMLは main.html
+* 利用するコントローラーは mainCtrl
+
+
 footer.jsは
 ```
 'use strict';
@@ -865,8 +895,11 @@ angular.module('app')
       });
   });
 ```
-となります。「$stateProvider」という単語が出てきました。$stateProviderは「状態」を定義しています。いまの場合だと
-main のときには urlとして/が指定され main.html を読み込み mainCtrl を実行するという意味です。
+となります。こちらは
+* url を /footer
+* 表示する HTMLは footer.html
+* 利用するコントローラーは footerCtrl
+として定義しています。「$stateProvider」という単語が出てきましたが、このように$stateProviderは「状態」を定義しています。
 ディレクトリをもう一度整理しますので確認してください。
 ```
 プロジェクトフォルダー
