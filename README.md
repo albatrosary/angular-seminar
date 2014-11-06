@@ -625,3 +625,305 @@ factoryを使うことでより柔軟な機能実装ができると共に単体�
 })();
 ```
 これで AngularJS の基本的な部分については終了です。これにルーティングを追加すれば Single-page Application もわけなく実装できます。
+
+# さらにステップアップ
+
+続きましてもうちょっとかっこよくしていきたいと思います。かっこいいというかJavaScriptファイルが一つですので数人で開発するときにはちょっと困りますね。なので少し「かっこよく」です。
+
+## ファイルを分割する
+
+意味あるグループでディレクトリを作りファイル分割しましょう。
+```
+プロジェクトフォルダー
+|- index.html
+|- header.html
+|- app
+   |- app.js
+   |- controller
+   |   |- main
+   |   |   |- mainCtrl.js
+   |   |- footer
+   |       |- footerCtrl.js
+   |- factory
+       |- factory.js
+```
+そうするとindex.htmlは
+```html
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>今日の勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body ng-app="app">
+    <div ng-include="'header.html'"></div>
+    <div ng-controller="ctrl">
+    <!-- 何かを記載 -->
+      <input type="button" value="クリックでメッセージ表示" ng-click="onClick()">
+      <span ng-bind="::message"></span>
+    </div>
+    <div ng-controller="footerCtrl">
+      <!-- 何かを記載 -->
+      <input type="button" value="クリックでメッセージ表示" ng-click="onClick()">
+      <span ng-bind="::message"></span>
+    </div>
+    <script src="bower_components/angular/angular.js"></script>
+    <!-- アプリケーションファイル -->
+    <script src="app/app.js"></script>
+    <script src="app/factory/factory.js"></script>
+    <script src="app/controller/main/mainCtrl.js"></script>
+    <script src="app/controller/footer/footerCtrl.js"></script>
+  </body>
+</html>
+```
+app.jsファイルを覗いてみます
+```
+'use strict';
+
+angular.module('app', []);
+```
+急に「'use strict';」という文字が出てきました。これは「strictモード（厳格モード）」と呼ばれています。strict モードでは、通常の JavaScript の意味にいくつかの変更を加えます。第一に strict モードでは、JavaScript でエラーではないが落とし穴になる一部の事柄を、エラーが発生するように変更することで除去します。第二に strict モードでは、JavaScript エンジンによる最適化処理を困難にする誤りを修正します。
+
+[https://developer.mozilla.org/ja/docs/Web/JavaScript/Strict_mode:title]
+
+さて次にfactory.jsです。
+```
+'use strict';
+
+angular.module('app')
+  .factory('factory', function () {
+    // 共通処理
+    var DEFUALT_MESSAGE = "AngularJS:";
+    return {
+      showMassage: function (message) {
+        return DEFUALT_MESSAGE + message;
+      }
+    }
+  });
+
+```
+ここで見てもらいたいのが app.js では angular.module の書き方が
+```
+angular.module('app', [])
+```
+でしたが、今回は
+```
+angular.module('app')
+```
+です。定義と呼び出しの違いを思い出してください。
+さて mainCtrl.js は
+```
+'use strict';
+
+angular.module('app')
+  .controller('mainCtrl', function ($scope, factory) {
+    // controllerの中身
+    $scope.onClick = function () {
+      $scope.message = factory.showMassage("AngularJSアプリケーション");
+    };
+  });
+```
+footerCtrl.js は
+```
+'use strict';
+
+angular.module('app')
+  .controller('footerCtrl', function ($scope, factory) {
+    // controllerの中身
+    $scope.onClick = function () {
+      $scope.message = factory.showMassage("ここはフッター");
+    };
+  });
+```
+です。コントローラーではそれぞれ factory という引数がありますが、これがファクトリー定義したfactory を呼び出しているという意味です。これを「インジェクション」と呼びます。
+
+## ルーティングを使ってみる
+
+### ui-routeのインストール
+
+ルーティングを入れてみます。ルールとしては
+```
+//localhost:8000/ のとき mainCtrl が index.html で処理
+//localhost:8000/#/footer のとき footerCtrl が index.html で処理 
+```
+されるようにします。まずルーティングするために ui-route をインストールしましょう。
+
+[http://angular-ui.github.io/ui-router/:embed]
+
+[http://angular-ui.github.io/ui-router/:title]
+
+bowerを使っている場合は
+```
+bower install angular-ui-router 
+```
+でインストールできます。HTMLファイルにui-routeの定義を追加します。
+```html
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>今日の勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body ng-app="app">
+    <div ng-include="'header.html'"></div>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/factory/factory.js"></script>
+    <script src="app/controller/main/mainCtrl.js"></script>
+    <script src="app/controller/footer/footerCtrl.js"></script>
+  </body>
+</html>
+```
+ダウンロードしたときには angular.js と同じ階層に配置したとすると
+```html
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>今日の勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body ng-app="app">
+    <div ng-include="'header.html'"></div>
+    <script src="angular.js"></script>
+    <script src="angular-ui-router.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/factory/factory.js"></script>
+    <script src="app/controller/main/mainCtrl.js"></script>
+    <script src="app/controller/footer/footerCtrl.js"></script>
+  </body>
+</html>
+```
+ここまでだと angular-ui-router.js ファイルを読み込んだだけでアプリケーションとしてはまだ利用できません。 angular で利用するために宣言する必要があります。 app.js を開き「宣言」をします。
+
+```
+'use strict';
+
+angular.module('app', ['ui.router']);
+```
+重要な一文です。[]の中に'ui.router'と記載しました。
+
+### 指定された url ごとに「機能」を入れ替えてみる
+
+はじめに表示させるHTMLファイルを個別に定義します。
+mainCtrlについては
+```html
+<div ng-controller="mainCtrl">
+<!-- 何かを記載 -->
+  <input type="button" value="クリックでメッセージ表示" ng-click="onClick()">
+  <span ng-bind="::message"></span>
+</div>
+```
+footerCtrlについては
+```html
+<div ng-controller="footerCtrl">
+  <!-- 何かを記載 -->
+  <input type="button" value="クリックでメッセージ表示" ng-click="onClick()">
+  <span ng-bind="::message"></span>
+</div>
+```
+道具は揃いましたがひとつ足りないものがあります。ある url が指定されたときにどのモジュールが実行されるか、まだ定義していません。定義ファイルとして、 mainCtrl用には main.js、footerCtrl用には footer.jsを用意します。
+main.jsは
+```
+'use strict';
+
+angular.module('app')
+  .config(function ($stateProvider) {
+    $stateProvider
+      .state('main', {
+        url: '/',
+        templateUrl: 'app/controller/main/main.html',
+        controller: 'mainCtrl'
+      });
+  });
+```
+footer.jsは
+```
+'use strict';
+
+angular.module('app')
+  .config(function ($stateProvider) {
+    $stateProvider
+      .state('footer', {
+        url: '/footer',
+        templateUrl: 'app/controller/footer/footer.html',
+        controller: 'footerCtrl'
+      });
+  });
+```
+となります。ディレクトリをもう一度整理します。
+```
+プロジェクトフォルダー
+|- index.html
+|- header.html
+|- app
+   |- app.js
+   |- controller
+   |   |- main
+   |   |   |- main.html
+   |   |   |- main.js
+   |   |   |- mainCtrl.js
+   |   |- footer
+   |       |- footer.html
+   |       |- footer.js
+   |       |- footerCtrl.js
+   |- factory
+       |- factory.js
+```
+ファイルをかなり分割しましたので index.html で読み込ませる必要があります。
+```html
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>今日の勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body ng-app="app">
+    <div ng-include="'header.html'"></div>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/factory/factory.js"></script>
+    <script src="app/controller/main/mainCtrl.js"></script>
+    <script src="app/controller/main/main.js"></script>
+    <script src="app/controller/footer/footerCtrl.js"></script>
+    <script src="app/controller/footer/footer.js"></script>
+  </body>
+</html>
+```
+外だしにしたHTMLを読み込ませる場所を定義する必要があります。
+```
+    <div ui-view=""></div>
+```
+というディレクティブを使うとその場所に個別定義したHTMLが差し込まれます！
+```html
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>今日の勉強</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body ng-app="app">
+    <div ng-include="'header.html'"></div>
+    <div ui-view=""></div>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/factory/factory.js"></script>
+    <script src="app/controller/main/mainCtrl.js"></script>
+    <script src="app/controller/main/main.js"></script>
+    <script src="app/controller/footer/footerCtrl.js"></script>
+    <script src="app/controller/footer/footer.js"></script>
+  </body>
+</html>
+```
