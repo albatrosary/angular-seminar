@@ -60,7 +60,7 @@ AngularJSのサイトから落とした場合は index.html と同じ階層に�
 index.html に AngularJSのモジュールを読み込ませます。scriptタグの src にダウンロードした angular.js を配置するだけです。
 次に bodyタグに ng-app を記載します。こうすると body タグで括られた範囲で angular が有効になります。  
 bower を使ってインストールした場合は:
-```
+```html
 <!doctype html>
 <html class="no-js">
   <head>
@@ -73,7 +73,7 @@ bower を使ってインストールした場合は:
 </html>
 ```
 ダウンロードし配置した場合は：  
-```
+```html
 <!doctype html>
 <html class="no-js">
   <head>
@@ -86,7 +86,7 @@ bower を使ってインストールした場合は:
 </html>
 ```
 URLで指定している場合は：  
-```
+```html
 <!doctype html>
 <html class="no-js">
   <head>
@@ -101,7 +101,7 @@ URLで指定している場合は：
 ## {{}}を使った簡単な計算
 
 AngularJS が正しく実行されているか確認します。{{}}という少し変わった書き方を使って確認します。  
-```
+```html
   <body ng-app>
     {{1+1}}
 ```
@@ -119,13 +119,13 @@ AngularJS が注目を集めた機能、双方向バインディングについ�
 ### 双方向バインディング{{hoge}}
 
 先ほど {{}} については説明しました。今度はテキストボックスで入力された値を {{}} に表示してみます：  
-```
+```html
   <body ng-app>
     <input type="text" ng-model="hoge"><br>
     {{hoge}}
 ```
 これでテキストボックスから {{}} へプログラムらしいプログラムは書かずにバインディングできました。参考までにテキストボックスを二つ作った場合はどうでしょう？行ってみます：  
-```
+```html
   <body ng-app>
     <input type="text" ng-model="hoge"><br>
     <input type="text" ng-model="hoge"><br>
@@ -141,7 +141,7 @@ AngularJS が注目を集めた機能、双方向バインディングについ�
   ::  
 ```
 を記載するだけです。
-```
+```html
   <body ng-app>
     <input type="text" ng-model="hoge"><br>
     <input type="text" ng-model="hoge"><br>
@@ -157,7 +157,7 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 ### ng-bind
 
 バインディングで {{}} を利用しましたが、アプリケーションを作っているとバインディングに若干の時間が必要になる場合があります。そのときにかっこ悪いかもしれませんが {{}} がチラッと見えることがあります。それを回避させるために ng-bind を利用します。先ほどのサンプルの {{}} を置き換えてみます。
-```
+```html
   <body ng-app>
     <input type="text" ng-model="hoge"><br>
     <input type="text" ng-model="hoge">
@@ -167,13 +167,13 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 ### ng-show と ng-if
 
 もう少しプログラムチックな動きをさせるために ng-show と ng-if を利用してみます。テキストボックスに入力した値が 1 のときにメッセージを出力するというロジックを記述してみます。  
-```
+```html
   <body ng-app>
     <input type="text" ng-model="hoge">
     <div ng-show="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
 ```  
 これは  ng-if でも書くことができます。  
-```
+```html
   <body ng-app>
     <input type="text" ng-model="hoge">
     <div ng-if="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
@@ -181,13 +181,13 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 ### ng-invalid と ng-dirty
 
 テキストボックスに対してバリデーションチェックを行います。簡単に必須チェックを行いましょう。先ほどのサンプルはテキストボックスに required を入れることで必須項目となります。
-```
+```html
   <body ng-app>
     <input type="text" ng-model="hoge" required >
     <div ng-if="hoge==='1'"><span ng-bind="hoge"></span>が入力されました</div>
 ```
 画面上、警告も何も表示されないので何が起きているのか確認できませんが、カスケードスタイルシートを定義するとよく理解できます。headタグの中に次の定義をしてください：  
-```
+```html
     <title>AngularJSの勉強</title>
     <style>
       input.ng-invalid {
@@ -197,7 +197,7 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
   </head>
 ```
 何も入力されていないときにはテキストボックスの縁が赤くなっていることが確認できます。ただ、これだと入力前から赤いので UI としてはイマイチといった感じです。ここで ng-dirty を利用します。カスケードスタイルシートを次のように変更してください：  
-```
+```html
     <title>AngularJSの勉強</title>
     <style>
       input.ng-invalid.ng-dirty {
@@ -211,7 +211,7 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 ### $invalid と $dirty を利用する（ちょっと寄り道）
 
 入力されてなかった場合、赤くなりましたがメッセージも表示します。メッセージを表示するためには formタグ を用意し「名前」をつける必要があります。formタグ名前を「demo」としテキストボックスの名前を「username」とします。警告メッセージは「必須入力です」にしましょう。するとbodyタグの中身は次のようになります。
-```
+```html
   <body ng-app>
     <form name="demo">
       <input type="text" name="username" ng-model="hoge" required>
@@ -222,7 +222,7 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 ### ng-minlength と ng-maxlength
 
 更に、入力された文字の長さを定義することができます。usernameの長さを4文字以上、8文字未満として定義します。
-```
+```html
   <body ng-app>
     <form name="demo">
       <input type="text" name="username" ng-model="hoge" ng-minlength="4" ng-maxlength="8" required>
@@ -231,7 +231,7 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
     </form>
 ```
 機能に合わせてメッセージも変更します。$errorを使うことでメッセージの幅が広がります。
-```
+```html
   <body ng-app>
     <form name="demo">
       <input type="text" name="username" ng-model="hoge" ng-minlength="4" ng-maxlength="8" required>
@@ -247,7 +247,7 @@ ng-model については詳しい説明なしに利用しましたし、AngularJ
 
 ng-init は AngularJS で何か処理を行わせるための前処理を行う部分です。ここに一覧表示させるデータを定義し ng-repeat で定義したデータを表示します。  
 先ほどのform終了タグの下に追加します。
-```
+```html
     <div ng-init="
       demoData = [
         {name: '山田', age: 24},
@@ -270,7 +270,7 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
   ng-repeat="data in demoData | filter: search"
 ```
 次に ng-model として search と定義したテキストボックスを用意います。先ほどのサンプルは  
-```
+```html
     <input type="text" ng-model="search">
     <div ng-init="
       demoData = [
@@ -291,7 +291,7 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 
 配列が定義されてますので selectタグを使ってみます。selectタグで利用されるのが ng-options です
 
-```
+```html
   <body ng-app>
     <div ng-init="
       demoData = [
@@ -314,7 +314,7 @@ ng-init は AngularJS で何か処理を行わせるための前処理を行う�
 
 次に radioボタンを作ってみます。その時に利用するのが ng-value です。
 
-```
+```html
   <body ng-app>
     <div ng-init="name.selected=''"></div>
     <div ng-init="
@@ -341,7 +341,7 @@ inputタグに対してもAngularJSはいろいろなディレクティブを用
 ### ng-copy と ng-paste 、ng-cut
 
 少し面白いディレクティブに ng-copy、ng-paste、ng-cutといったディレクティブがあります。
-```
+```html
   <body ng-app>
     <input ng-paste="paste=true" ng-init="paste=false" placeholder='paste here'>pasted: {{paste}}<br>
     <input ng-copy="copied=true" ng-init="copied=false; copyvalue='copy me'" ng-model="copyvalue">copied: {{copied}}<br>
@@ -362,11 +362,11 @@ inputタグに対してもAngularJSはいろいろなディレクティブを用
 |-header.html  
 ```
 header.html の中身は  
-```
+```html
 <h1>AngularJS勉強会</h1>
 ```
 としましょう。これを ng-include で取り込みます。bodyタグの下に
-```
+```html
   <body ng-app>
     <div ng-include="'header.html'"></div>
 ```
@@ -375,7 +375,7 @@ header.html の中身は
 ## プログラムを書いてみる
 
 せっかくですので JavaScript を少しだけ記述してみます。JavaScriptを記載する場所を定義します。
-```
+```html
 <!doctype html>
 <html class="no-js">
   <head>
@@ -398,7 +398,7 @@ header.html の中身は
 
 はじめましょう！  
 まず、ng-appを ng-app="app" とAngularJSアプリケーションに名前をつけます。これで再度実行してみてください。エラーになるはずです。ここで angular.module をJavascript に定義します。
-```
+```html
 (function (){
 // ここにJavaScriptを書きます
   angular.module('app', []);
@@ -423,7 +423,7 @@ header.html の中身は
 $scope というのがありますが、アプリケーションを作るときには威力を発揮します。
 
 このコントローラが扱うコンテンツの部分をHTMLに定義します。
-```
+```html
     <div ng-include="'header.html'"></div>
     <div ng-controller="ctrl">
     <!-- 何かを記載 -->
@@ -439,7 +439,7 @@ $scope というのがありますが、アプリケーションを作るとき�
   };
 ```
 と定義します。次にコンテンツであるHTMLのコントローラー部分に、呼び出す記載をします。実はこれについては既に学習済みです。
-```
+```html
     <div ng-include="'header.html'"></div>
     <div ng-controller="ctrl">
     <!-- 何かを記載 -->
@@ -449,7 +449,7 @@ $scope というのがありますが、アプリケーションを作るとき�
 ```
 いかがでしょう！  
 さらにボタンを使って何か処理をさせましょう。クリックしてメッセージを表示する機能を追加します。まずボタンから  
-```
+```html
     <div ng-include="'header.html'"></div>
     <div ng-controller="ctrl">
     <!-- 何かを記載 -->
@@ -468,7 +468,7 @@ $scope というのがありますが、アプリケーションを作るとき�
   };
 ```
 かなり本格できなアプリケーションになってきたと思います。プログラムを書き始めると $scope が目立ってきます。AngularJSはこの $scope で厳密なスコープ定義をしているとても重要なファクターです。実際にフッターというコントローラーを追加してみます。コンテンツ部分は
-```
+```html
     <div ng-include="'header.html'"></div>
     <div ng-controller="ctrl">
     <!-- 何かを記載 -->
@@ -506,7 +506,7 @@ JavaScript の部分は
 ```
 それぞれ独立した処理になっていますので、確認してください。このコントローラーネストすることも可能です。具体的には  
 
-```
+```html
     <div ng-include="'header.html'"></div>
     <div ng-controller="ctrl">
     <!-- 何かを記載 -->
