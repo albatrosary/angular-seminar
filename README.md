@@ -948,11 +948,15 @@ http://localhost:8000/
 http://localhost:8000/#/footer
 ```
 のとき動きを確認してください。どうですか！
-ただこの場合だと適当な url が指定された場合、ボタンが表示されないことを確認してください。適当な url が指定された場合には
+ただこの場合だと適当な url が指定された場合、たとえば
+```
+http://localhost:8000/#/hoge
+```
+のようなurlが指定された場合、ボタンが表示されないことを確認してください。適当な url が指定された場合には
 ```
 http://localhost:8000/
 ```
-と同じ main.html が表示されるようにします。app.js を開いてください。
+と同じ main.html が表示されるようにしましょう。app.js を開いてください。
 ```
 'use strict';
 
@@ -975,7 +979,7 @@ angular.module('app')
       .state('main', {
 ```
 header.html は次のようになります。
-```
+```html
 <h1>AngularJS勉強会</h1>
 <a ui-sref="main()">メイン</a>
 <a ui-sref="footer()">フッター</a>
